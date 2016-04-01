@@ -11,7 +11,7 @@ public class Main {
         File fin = new File("text.txt");
 
         Pattern adverb = Pattern.compile(".*о$");
-        Pattern verb = Pattern.compile(".*ть$");
+        Pattern verb = Pattern.compile(".*ть?с?я?$");
         Pattern adjective = Pattern.compile(".*[аоеиыя][еймя]с?я?$");
 
         //int advNum=0, verbNum=0, adjNum=0;
