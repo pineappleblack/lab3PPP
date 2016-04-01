@@ -1,13 +1,16 @@
 package com.company;
 
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.util.regex.*;
 
 public class Main {
 
     public static void main(String[] args) {
         System.out.println(new File(".").getAbsolutePath());
         File fin = new File("text.txt");
+        Pattern adverb = Pattern.compile(".*о$");
+        Matcher matcher;
 	    try
         {
             FileReader reader = new FileReader(fin);
@@ -18,7 +21,12 @@ public class Main {
                 st = new StringTokenizer(s, " \t\n\r,:-.");
                 while (st.hasMoreTokens())
                 {
-                    System.out.println(st.nextToken());
+                    //System.out.println(st.nextToken());
+                    matcher = adverb.matcher(st.nextToken());
+                    while (matcher.find())
+                    {
+                        System.out.println(matcher.group());
+                    }
                 }
             }
         }
