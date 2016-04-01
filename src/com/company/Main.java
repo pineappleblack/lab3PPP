@@ -9,7 +9,13 @@ public class Main {
     public static void main(String[] args) {
         System.out.println(new File(".").getAbsolutePath());
         File fin = new File("text.txt");
+
         Pattern adverb = Pattern.compile(".*о$");
+        Pattern verb = Pattern.compile(".*ть$");
+        Pattern adjective = Pattern.compile(".*[аоеиыя][еймя]с?я?$");
+
+        //int advNum=0, verbNum=0, adjNum=0;
+
         Matcher matcher;
 	    try
         {
@@ -17,15 +23,26 @@ public class Main {
             BufferedReader buffReader = new BufferedReader(reader);
             String s;
             StringTokenizer st;
+            String temp;
             while((s = buffReader.readLine()) != null){
-                st = new StringTokenizer(s, " \t\n\r,:-.");
+                st = new StringTokenizer(s, " \t\n\r,:-.,!?");
                 while (st.hasMoreTokens())
                 {
-                    //System.out.println(st.nextToken());
-                    matcher = adverb.matcher(st.nextToken());
+                    temp = st.nextToken();
+                    matcher = adverb.matcher(temp);
                     while (matcher.find())
                     {
-                        System.out.println(matcher.group());
+                        System.out.println(matcher.group() + " - наречие");
+                    }
+                    matcher = adjective.matcher(temp);
+                    while (matcher.find())
+                    {
+                        System.out.println(matcher.group() + " - прилагательное");
+                    }
+                    matcher = verb.matcher(temp);
+                    while (matcher.find())
+                    {
+                        System.out.println(matcher.group() + " - глагол");
                     }
                 }
             }
