@@ -15,7 +15,9 @@ public class Main {
         Pattern adjective = Pattern.compile(".*[аоеиыя][еймя]с?я?$");
 
         //int advNum=0, verbNum=0, adjNum=0;
+        
         System.out.println("Another Hello, world");
+        System.out.println("Hello, world");
         Matcher matcher;
 	    try
         {
