@@ -1,17 +1,25 @@
 package com.company;
 
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
 
     public static void main(String[] args) {
         System.out.println(new File(".").getAbsolutePath());
-	    try (FileInputStream fin = new FileInputStream("text.txt"))
+        File fin = new File("text.txt");
+	    try
         {
-            int i=-1;
-            while (((i=fin.read())!=-1))
-            {
-                System.out.print((char)i);
+            FileReader reader = new FileReader(fin);
+            BufferedReader buffReader = new BufferedReader(reader);
+            String s;
+            StringTokenizer st;
+            while((s = buffReader.readLine()) != null){
+                st = new StringTokenizer(s, " \t\n\r,:-.");
+                while (st.hasMoreTokens())
+                {
+                    System.out.println(st.nextToken());
+                }
             }
         }
         catch (FileNotFoundException ex)
